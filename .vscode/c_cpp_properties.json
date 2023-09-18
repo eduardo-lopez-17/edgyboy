@@ -4,7 +4,8 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "C:/Program Files/Arduino IDE/**"
+                "C:/Program Files/Arduino IDE/**",
+                "C:/Users/Angel/AppData/Local/Arduino15/**"
             ],
             "defines": [
                 "_DEBUG",
