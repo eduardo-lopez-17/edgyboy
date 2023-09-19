@@ -40,10 +40,8 @@ static const uint16_t maxPulse = 2400;
 
 /**
  * Todo list:
- * Add Motor lib
  * Add Encoder lib
  * Add servo logic
- * Add color sensor lib
  * Add color sensor logic
  * Add IR sensor lib
  * Add IR sensor logic
