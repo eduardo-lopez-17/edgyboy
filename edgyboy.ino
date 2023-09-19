@@ -1,6 +1,8 @@
 #include "Arduino.h"
 #include "Servo.h"
 #include "PID_v1.h"
+#include "L298NX2.h"
+#include "NewPing.h"
 
 void zoneA();
 
