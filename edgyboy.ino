@@ -6,6 +6,7 @@
 
 /// Function Prototypes
 
+void autoZone();
 void zoneA();
 void zoneB();
 void zoneC();
@@ -34,9 +35,15 @@ static const uint8_t rightUltrasonicPin = A2;
 
 static const uint8_t batteryPin = A3;
 
+L298NX2 motorDriver(enAPin, in1Pin, in2Pin, enBPin, in3Pin, in4Pin);
+
 Servo gripper;
 static const uint16_t minPulse = 600;
 static const uint16_t maxPulse = 2400;
+
+NewPing leftUltrasonic(leftUltrasonicPin, leftUltrasonicPin);
+NewPing frontUltrasonic(frontUltrasonicPin, frontUltrasonicPin);
+NewPing frontUltrasonic(rightUltrasonicPin, rightUltrasonicPin);
 
 /**
  * Todo list:
@@ -56,11 +63,21 @@ static const uint16_t maxPulse = 2400;
 
 void setup()
 {
+    // Servo
     gripper.attach(gripperPin, minPulse, maxPulse);
     gripper.write(0);
+    
+    // IR, thes are already setup as inputs
+    pinMode(leftIRPin, INPUT);
+    pinMode(rightIRPin, INPUT);
 }
 
 void loop()
+{
+    
+}
+
+void autoZone()
 {
     
 }
