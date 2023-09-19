@@ -1,4 +1,7 @@
 #include "Arduino.h"
+#include "Servo.h"
+
+void zoneA();
 
 static const uint8_t leftIRPin = 10;
 static const uint8_t rightIRPin = 10;
@@ -29,4 +32,9 @@ void setup()
 void loop()
 {
     
+}
+
+void zoneA()
+{
+    // Code for Zone A
 }
