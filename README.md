@@ -12,3 +12,5 @@ List of the public libraries used for the proyect
 - [PID](https://playground.arduino.cc/Code/PIDLibrary/)
 - [NewPing](https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home)
 - [L298N](https://www.arduino.cc/reference/en/libraries/l298n/)
+- [Adafruit TCS34725](https://github.com/adafruit/Adafruit_TCS34725)
+- Adafruit BusIO
