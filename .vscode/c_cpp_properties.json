@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 //"C:/Program Files/Arduino IDE/**",
-                "${userprofile}/AppData/Local/Arduino15/**"
+                "${userprofile}/AppData/Local/Arduino15/**",
+                "${userprofile}/Documents/Arduino/Libraries/**"
             ],
             "defines": [
                 "_DEBUG",

@@ -6,8 +6,9 @@ This is a work in progress.
 
 # Dependecies
 
-Here you have a list of all the libraries used for the proyect
+List of the public libraries used for the proyect
 
-1. Servo
-2. PID [https://playground.arduino.cc/Code/PIDLibrary/]
-3. NewPing [https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home]
+- [Servo](https://www.arduino.cc/reference/en/libraries/servo/)
+- [PID](https://playground.arduino.cc/Code/PIDLibrary/)
+- [NewPing](https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home)
+- [L298N](https://www.arduino.cc/reference/en/libraries/l298n/)
