@@ -7,7 +7,6 @@ static const uint8_t rightIRPin = 10;
  * Todo list:
  * Add Motor lib
  * Add Encoder lib
- * Add PID lib
  * Add servo logic
  * Add color sensor lib
  * Add color sensor logic
