@@ -5,7 +5,7 @@
 #include "NewPing.h"
 #include "Adafruit_TCS34725.h"
 #include "Adafruit_SSD1306.h"
-#include "rgb2hue.h"
+#include "lib/rgb2hue.h"
 
 /// Function Prototypes
 
