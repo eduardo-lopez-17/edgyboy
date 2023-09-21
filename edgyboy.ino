@@ -3,6 +3,8 @@
 #include "PID_v1.h"
 #include "L298NX2.h"
 #include "NewPing.h"
+#include "Adafruit_TCS34725.h"
+#include "Adafruit_SSD1306.h"
 
 /// Function Prototypes
 

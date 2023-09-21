@@ -13,4 +13,6 @@ List of the public libraries used for the proyect
 - [NewPing](https://bitbucket.org/teckel12/arduino-new-ping/wiki/Home)
 - [L298N](https://www.arduino.cc/reference/en/libraries/l298n/)
 - [Adafruit TCS34725](https://github.com/adafruit/Adafruit_TCS34725)
-- Adafruit BusIO
+- [Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
+- [Adafruit GFX](https://github.com/adafruit/Adafruit-GFX-Library)
+- [Adafruit BusIO](https://github.com/adafruit/Adafruit_BusIO)
