@@ -41,6 +41,9 @@ Servo gripper;
 static const uint16_t minPulse = 600;
 static const uint16_t maxPulse = 2400;
 
+static const uint8_t closedPosition = 0;
+static const uint8_t openPosition = 180;
+
 NewPing leftUltrasonic(leftUltrasonicPin, leftUltrasonicPin);
 NewPing frontUltrasonic(frontUltrasonicPin, frontUltrasonicPin);
 NewPing frontUltrasonic(rightUltrasonicPin, rightUltrasonicPin);
@@ -96,3 +99,4 @@ void zoneC()
 {
     // Code for Zone C
 }
+
