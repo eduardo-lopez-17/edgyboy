@@ -5,6 +5,7 @@
 #include "NewPing.h"
 #include "Adafruit_TCS34725.h"
 #include "Adafruit_SSD1306.h"
+#include "ColorConverter.h"
 
 /// Function Prototypes
 
@@ -54,7 +55,6 @@ NewPing rightUltrasonic(rightUltrasonicPin, rightUltrasonicPin);
 /**
  * Todo list:
  * Add Encoder lib
- * Add servo logic
  * Add color sensor logic
  * Add IR sensor lib
  * Add IR sensor logic
@@ -73,7 +73,7 @@ void setup()
     gripper.attach(gripperPin, minPulse, maxPulse);
     gripper.write(servoClosedPosition);
     
-    // IR, thes are already setup as inputs
+    // IR, these are already setup as inputs at startup
     pinMode(leftIRPin, INPUT);
     pinMode(rightIRPin, INPUT);
 }
