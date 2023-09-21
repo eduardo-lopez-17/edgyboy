@@ -10,6 +10,7 @@ void autoZone();
 void zoneA();
 void zoneB();
 void zoneC();
+void servoOpen(bool open);
 
 /// Variables
 
@@ -41,12 +42,12 @@ Servo gripper;
 static const uint16_t minPulse = 600;
 static const uint16_t maxPulse = 2400;
 
-static const uint8_t closedPosition = 0;
-static const uint8_t openPosition = 180;
+static const uint8_t servoClosedPosition = 0;
+static const uint8_t servoOpenPosition = 180;
 
 NewPing leftUltrasonic(leftUltrasonicPin, leftUltrasonicPin);
 NewPing frontUltrasonic(frontUltrasonicPin, frontUltrasonicPin);
-NewPing frontUltrasonic(rightUltrasonicPin, rightUltrasonicPin);
+NewPing rightUltrasonic(rightUltrasonicPin, rightUltrasonicPin);
 
 /**
  * Todo list:
@@ -68,7 +69,7 @@ void setup()
 {
     // Servo
     gripper.attach(gripperPin, minPulse, maxPulse);
-    gripper.write(0);
+    gripper.write(servoClosedPosition);
     
     // IR, thes are already setup as inputs
     pinMode(leftIRPin, INPUT);
@@ -100,3 +101,7 @@ void zoneC()
     // Code for Zone C
 }
 
+void servoOpen(bool open)
+{
+    gripper.write(open ? servoOpenPosition : servoClosedPosition);
+}
