@@ -6,7 +6,7 @@ This is a work in progress.
 
 # Dependecies
 
-List of the public libraries used for the proyect
+### List of the public libraries used for the proyect:
 
 - [Servo](https://www.arduino.cc/reference/en/libraries/servo/)
 - [PID](https://playground.arduino.cc/Code/PIDLibrary/)
@@ -17,3 +17,9 @@ List of the public libraries used for the proyect
 - [ColorConverter](https://github.com/luisllamasbinaburo/Arduino-ColorConverter)
 - [Adafruit GFX](https://github.com/adafruit/Adafruit-GFX-Library)
 - [Adafruit BusIO](https://github.com/adafruit/Adafruit_BusIO)
+
+### List of custom libraries used:
+
+- rgb2hue
+- color
+- battery
