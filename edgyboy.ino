@@ -6,6 +6,7 @@
 #include "Adafruit_TCS34725.h"
 #include "Adafruit_SSD1306.h"
 #include "lib/rgb2hue.h"
+#include "lib/color.h"
 
 /// Function Prototypes
 
@@ -87,6 +88,8 @@ void autoZone()
 {
     
 }
+
+
 
 void zoneA()
 {
