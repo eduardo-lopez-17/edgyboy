@@ -193,7 +193,6 @@ void zoneC()
         {
             // Stop
             motorDriver.stop();
-            //motorDriver.setSpeed(0);
         }
         else if (leftIR && !rightIR)
         {
