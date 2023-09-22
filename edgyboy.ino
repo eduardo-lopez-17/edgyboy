@@ -181,6 +181,33 @@ void zoneC()
     const uint8_t motorSpeed = 100;
     // We have to do a line follower
     motorDriver.setSpeed(motorSpeed);
+    motorDriver.forward();
+    
+    while (true)
+    {
+        // Are they seeing the line?
+        bool leftIR = !digitalRead(leftIRPin);
+        bool rightIR = !digitalRead(rightIRPin);
+        
+        if (leftIR && rightIR)
+        {
+            // Stop
+            motorDriver.stop();
+            //motorDriver.setSpeed(0);
+        }
+        else if (leftIR && !rightIR)
+        {
+            motorDriver.stopA();
+        }
+        else if (!leftIR && rightIR)
+        {
+            motorDriver.stopB();
+        }
+        else
+        {
+            motorDriver.forward();
+        }
+    }
     
 }
 
