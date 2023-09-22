@@ -36,11 +36,11 @@ namespace Color
         
         if (red <= white_cutoff && green <= white_cutoff && blue <= white_cutoff)
         {
-            return WHITE;
+            return COLOR_WHITE;
         }
         else if (red >= black_cutoff && green >= black_cutoff && blue >= black_cutoff)
         {
-            return BLACK;
+            return COLOR_BLACK;
         }
         
         // Check which color is

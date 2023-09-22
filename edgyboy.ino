@@ -85,6 +85,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 /**
  * Todo list:
+ * Define what to do if battery is low or a little low
  * Add Encoder lib
  * Add color sensor logic
  * Add IR sensor logic
