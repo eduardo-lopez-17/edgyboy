@@ -110,7 +110,7 @@ void setup()
     pinMode(rightIRPin, INPUT);
     
     // OLED
-    display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
+    display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)
 }
 
 void loop()
