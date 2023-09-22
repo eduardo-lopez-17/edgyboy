@@ -6,6 +6,7 @@
 #define COLOR_H
 
 #include "stdint.h"
+
 namespace Color
 {
     enum COLOR
@@ -28,7 +29,7 @@ namespace Color
         COLOR_BLACK = 0b1111
     };
 
-    COLOR get_color(uint8_t red, uint8_t green, uint8_t blue, uint16_t hue)
+    COLOR getColor(uint8_t red, uint8_t green, uint8_t blue, uint16_t hue)
     {
         const uint8_t white_cutoff = 64;
         const uint8_t black_cutoff = 255 - 64;

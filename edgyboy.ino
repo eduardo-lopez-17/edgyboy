@@ -89,6 +89,9 @@ void setup()
     gripper.attach(gripperPin, minPulse, maxPulse);
     gripper.write(servoClosedPosition);
     
+    // Color sensor
+    rgbSensor.begin();
+    
     // IR, these are already setup as inputs at startup
     pinMode(leftIRPin, INPUT);
     pinMode(rightIRPin, INPUT);
@@ -101,7 +104,48 @@ void loop()
 
 void autoZone()
 {
+    float red = 0.0f, green = 0.0f, blue = 0.0f;
+    // Get color
+    rgbSensor.getRGB(&red, &green, &blue);
     
+    uint16_t hue = getHue(red, green, blue);
+    
+    Color::COLOR color = Color::getColor(red, green, blue, hue);
+    
+    switch (color)
+    {
+        case Color::COLOR_YELLOW:
+            zoneA();
+            break;
+        case Color::COLOR_CYAN:
+            // Enter slope
+            break;
+        case Color::COLOR_MAGENTA:
+            zoneB();
+            break;
+        case Color::COLOR_VIOLET:
+            zoneC();
+            break;
+        default:
+            // Enter slope
+            break;
+    }
+}
+
+bool outOfZone(Color::COLOR colorZone, Color::COLOR newColor)
+{
+    switch (newColor)
+    {
+        case Color::COLOR_YELLOW:
+        case Color::COLOR_CYAN:
+        case Color::COLOR_MAGENTA:
+        case Color::COLOR_VIOLET:
+            if (newColor != colorZone)
+                return true;
+            break;
+    }
+    
+    return false;
 }
 
 void zoneA()
