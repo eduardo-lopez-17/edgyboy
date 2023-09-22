@@ -98,6 +98,17 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 void setup()
 {
+    if (!isBatteryLevelGreat(batteryPin))
+    {
+        // We may have problems, tell the user.
+    }
+    
+    if (!isBatteryLevelGood(batteryPin))
+    {
+        // We shall not continue, it is better to stay off.
+        //for (;;);
+    }
+    
     // Servo
     gripper.attach(gripperPin, minPulse, maxPulse);
     gripper.write(servoClosedPosition);
