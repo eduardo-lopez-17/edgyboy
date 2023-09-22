@@ -8,6 +8,8 @@
 #include "lib/rgb2hue.h"
 #include "lib/color.h"
 
+#define DEBUG true
+
 /// Function Prototypes
 
 void autoZone();
@@ -40,7 +42,11 @@ static const uint8_t rightUltrasonicPin = A2;
 
 static const uint8_t batteryPin = A3;
 
+// H-Bridge
+
 L298NX2 motorDriver(enAPin, in1Pin, in2Pin, enBPin, in3Pin, in4Pin);
+
+// Servo
 
 Servo gripper;
 static const uint16_t minPulse = 600;
@@ -49,9 +55,18 @@ static const uint16_t maxPulse = 2400;
 static const uint8_t servoClosedPosition = 0;
 static const uint8_t servoOpenPosition = 180;
 
-NewPing leftUltrasonic(leftUltrasonicPin, leftUltrasonicPin);
-NewPing frontUltrasonic(frontUltrasonicPin, frontUltrasonicPin);
-NewPing rightUltrasonic(rightUltrasonicPin, rightUltrasonicPin);
+// Color sensor
+
+Adafruit_TCS34725 rgbSensor =
+Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
+
+// Ultrasonic
+
+static const uint16_t MAX_LENGTH = 300;
+
+NewPing leftUltrasonic(leftUltrasonicPin, leftUltrasonicPin, MAX_LENGTH);
+NewPing frontUltrasonic(frontUltrasonicPin, frontUltrasonicPin, MAX_LENGTH);
+NewPing rightUltrasonic(rightUltrasonicPin, rightUltrasonicPin, MAX_LENGTH);
 
 /**
  * Todo list:
@@ -88,8 +103,6 @@ void autoZone()
 {
     
 }
-
-
 
 void zoneA()
 {
