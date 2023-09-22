@@ -178,7 +178,10 @@ void zoneC()
 {
     // Code for Zone C
     
+    const uint8_t motorSpeed = 100;
     // We have to do a line follower
+    motorDriver.setSpeed(motorSpeed);
+    
 }
 
 void servoOpen(bool open)
