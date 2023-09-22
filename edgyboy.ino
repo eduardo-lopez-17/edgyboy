@@ -161,6 +161,8 @@ void zoneB()
 void zoneC()
 {
     // Code for Zone C
+    
+    // We have to do a line follower
 }
 
 void servoOpen(bool open)
