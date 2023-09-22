@@ -24,6 +24,7 @@
 void autoZone();
 bool outOfZone(Color::COLOR colorZone, Color::COLOR newColor);
 void zoneA();
+void slope();
 void zoneB();
 void zoneC();
 void servoOpen(bool open);
@@ -133,7 +134,7 @@ void autoZone()
             zoneA();
             break;
         case Color::COLOR_CYAN:
-            // Enter slope
+            slope();
             break;
         case Color::COLOR_MAGENTA:
             zoneB();
@@ -142,7 +143,7 @@ void autoZone()
             zoneC();
             break;
         default:
-            // Enter slope
+            slope();
             break;
     }
 }
@@ -166,6 +167,11 @@ bool outOfZone(Color::COLOR colorZone, Color::COLOR newColor)
 void zoneA()
 {
     // Code for Zone A
+}
+
+void slope()
+{
+    
 }
 
 void zoneB()
