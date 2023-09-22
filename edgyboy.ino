@@ -86,7 +86,6 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
  * Todo list:
  * Add Encoder lib
  * Add color sensor logic
- * Add IR sensor lib
  * Add IR sensor logic
  * Program Zone A
  * Program Zone B
