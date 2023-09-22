@@ -91,7 +91,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
  * Add IR sensor logic
  * Program Zone A
  * Program Zone B
- * Program Zone C
+ * Program Zone C (Work in progress)
  * Program slope zone
  * Program PID control for movement
  * Program PID control for pivot
@@ -123,11 +123,12 @@ void setup()
     
     // OLED
     display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
+    display.clearDisplay();
 }
 
 void loop()
 {
-    
+    autoZone();
 }
 
 void autoZone()
