@@ -88,7 +88,6 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
  * Add color sensor logic
  * Add IR sensor lib
  * Add IR sensor logic
- * Auto-zone Detect zones automatically
  * Program Zone A
  * Program Zone B
  * Program Zone C
