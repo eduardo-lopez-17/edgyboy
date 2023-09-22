@@ -1,4 +1,5 @@
 #include "Arduino.h"
+#include "Wire.h"
 #include "Servo.h"
 #include "PID_v1.h"
 #include "L298NX2.h"
@@ -10,9 +11,17 @@
 
 #define DEBUG true
 
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 32 // OLED display height, in pixels
+
+#define OLED_RESET -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+
+#define SCREEN_ADDRESS 0x3C
+
 /// Function Prototypes
 
 void autoZone();
+bool outOfZone(Color::COLOR colorZone, Color::COLOR newColor);
 void zoneA();
 void zoneB();
 void zoneC();
@@ -68,6 +77,10 @@ NewPing leftUltrasonic(leftUltrasonicPin, leftUltrasonicPin, MAX_LENGTH);
 NewPing frontUltrasonic(frontUltrasonicPin, frontUltrasonicPin, MAX_LENGTH);
 NewPing rightUltrasonic(rightUltrasonicPin, rightUltrasonicPin, MAX_LENGTH);
 
+// OLED
+
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
 /**
  * Todo list:
  * Add Encoder lib
@@ -95,6 +108,9 @@ void setup()
     // IR, these are already setup as inputs at startup
     pinMode(leftIRPin, INPUT);
     pinMode(rightIRPin, INPUT);
+    
+    // OLED
+    display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
 }
 
 void loop()
