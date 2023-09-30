@@ -21,4 +21,3 @@ This is a work in progress.
 
 - rgb2hue
 - color
-- battery
