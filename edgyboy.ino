@@ -98,16 +98,11 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 /**
  * Todo list:
- * Define what to do if battery is low or a little low
- * Add Encoder lib
  * Add color sensor logic
- * Add IR sensor logic
  * Program Zone A
  * Program Zone B
  * Program Zone C (Work in progress)
  * Program slope zone
- * Program PID control for movement
- * Program PID control for pivot
  */
 
 void setup()
