@@ -189,9 +189,9 @@ void zoneA()
     
         const uint8_t distanceForNextSquare = 15;
         
-        bool canGoLeft = leftUltrasonic.ping_cm() < distanceForNextSquare;
-        bool canGoFront = frontUltrasonic.ping_cm() < distanceForNextSquare;
-        bool canGoRight = rightUltrasonic.ping_cm() < distanceForNextSquare;
+        bool canGoLeft = leftUltrasonic.ping_cm() > distanceForNextSquare;
+        bool canGoFront = frontUltrasonic.ping_cm() > distanceForNextSquare;
+        bool canGoRight = rightUltrasonic.ping_cm() > distanceForNextSquare;
         
         if (canGoLeft)
         {
