@@ -59,7 +59,7 @@ static const uint8_t rightUltrasonicPin = A2;
 
 static const uint8_t batteryPin = A3;
 
- = // H-Bridge
+// H-Bridge
 
 L298NX2 motorDriver(enAPin, in1Pin, in2Pin, enBPin, in3Pin, in4Pin);
 
@@ -213,6 +213,39 @@ void zoneA()
         runHalfSquare();
         
         Color::COLOR color = calculateColor();
+        
+        display.clearDisplay();
+        display.setCursor(0, 0);
+        switch (color)
+        {
+            case Color::COLOR_RED:
+            case Color::COLOR_ROSE:
+            case Color::COLOR_MAGENTA:
+            case Color::COLOR_ORANGE:
+                display.print("RED", 0, 0);
+                break;
+            case Color::COLOR_GREEN:
+            case Color::COLOR_SPRING_GREEN:
+            case Color::COLOR_CHARTREUSE_GREEN:
+            case Color::COLOR_YELLOW:
+                display.print("GREEN", 0, 0);
+                break;
+            case Color::COLOR_BLUE:
+            case Color::COLOR_VIOLET:
+            case Color::COLOR_AZURE:
+            case Color::COLOR_CYAN:
+                display.print("BLUE", 0, 0);
+                break;
+            case Color::COLOR_BLACK:
+                display.print("BLACK", 0, 0);
+                break;
+            case Color::COLOR_WHITE:
+                display.print("WHITE", 0 , 0);
+                break;
+            default:
+                display.print("Dunno", 0, 0);
+                break;
+        }
         
         if (color == Color::COLOR_BLACK)
         {
