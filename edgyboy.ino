@@ -221,28 +221,28 @@ void zoneA()
             case Color::COLOR_ROSE:
             case Color::COLOR_MAGENTA:
             case Color::COLOR_ORANGE:
-                display.print("RED", 0, 0);
+                display.print("RED");
                 break;
             case Color::COLOR_GREEN:
             case Color::COLOR_SPRING_GREEN:
             case Color::COLOR_CHARTREUSE_GREEN:
             case Color::COLOR_YELLOW:
-                display.print("GREEN", 0, 0);
+                display.print("GREEN");
                 break;
             case Color::COLOR_BLUE:
             case Color::COLOR_VIOLET:
             case Color::COLOR_AZURE:
             case Color::COLOR_CYAN:
-                display.print("BLUE", 0, 0);
+                display.print("BLUE");
                 break;
             case Color::COLOR_BLACK:
-                display.print("BLACK", 0, 0);
+                display.print("BLACK");
                 break;
             case Color::COLOR_WHITE:
-                display.print("WHITE", 0 , 0);
+                display.print("WHITE");
                 break;
             default:
-                display.print("Dunno", 0, 0);
+                display.print("Dunno");
                 break;
         }
         
