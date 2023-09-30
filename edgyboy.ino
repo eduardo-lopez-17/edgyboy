@@ -8,7 +8,7 @@
 #include "Adafruit_SSD1306.h"
 #include "lib/rgb2hue.h"
 #include "lib/color.h"
-#include "lib/battery.h"
+//#include "lib/battery.h"
 
 #define DEBUG true
 
@@ -48,8 +48,8 @@ static const uint8_t rightEncoder = 3;
 
 static const uint8_t gripperPin = 10;
 
-static const uint8_t leftIRPin = 8;
-static const uint8_t rightIRPin = 9;
+//static const uint8_t leftIRPin = 8;
+//static const uint8_t rightIRPin = 9;
 
 static const uint8_t leftUltrasonicPin = A0;
 static const uint8_t frontUltrasonicPin = A1;
@@ -103,17 +103,6 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 void setup()
 {
-    if (!isBatteryLevelGreat(batteryPin))
-    {
-        // We may have problems, tell the user.
-    }
-    
-    if (!isBatteryLevelGood(batteryPin))
-    {
-        // We shall not continue, it is better to stay off.
-        //for (;;);
-    }
-    
     // Servo
     gripper.attach(gripperPin, minPulse, maxPulse);
     gripper.write(servoOpenPosition);
@@ -122,10 +111,6 @@ void setup()
     rgbSensor.begin();
     // Turn on LED
     rgbSensor.setInterrupt(false);
-    
-    // IR, these are already setup as inputs at startup
-    pinMode(leftIRPin, INPUT);
-    pinMode(rightIRPin, INPUT);
     
     // OLED
     display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
@@ -233,27 +218,24 @@ void zoneC()
     
     while (true)
     {
-        // Are they seeing the line?
-        bool leftIR = !digitalRead(leftIRPin);
-        bool rightIR = !digitalRead(rightIRPin);
         
-        if (leftIR && rightIR)
-        {
-            // Stop
-            motorDriver.stop();
-        }
-        else if (leftIR && !rightIR)
-        {
-            motorDriver.stopA();
-        }
-        else if (!leftIR && rightIR)
-        {
-            motorDriver.stopB();
-        }
-        else
-        {
-            motorDriver.forward();
-        }
+        // if (leftIR && rightIR)
+        // {
+        //     // Stop
+        //     motorDriver.stop();
+        // }
+        // else if (leftIR && !rightIR)
+        // {
+        //     motorDriver.stopA();
+        // }
+        // else if (!leftIR && rightIR)
+        // {
+        //     motorDriver.stopB();
+        // }
+        // else
+        // {
+        //     motorDriver.forward();
+        // }
     }
     
 }
