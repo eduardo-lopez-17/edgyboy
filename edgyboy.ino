@@ -23,6 +23,8 @@
 
 void autoZone();
 bool outOfZone(Color::COLOR colorZone, Color::COLOR newColor);
+Color::COLOR autoClasifyColorZone(Color::COLOR color);
+void calibrateColor(float &red, float &green, float &blue);
 void zoneA();
 void slope();
 void zoneB();
@@ -73,7 +75,14 @@ static const uint8_t servoOpenPosition = 180;
 // Color sensor
 
 Adafruit_TCS34725 rgbSensor =
-Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_4X);
+Adafruit_TCS34725(TCS34725_INTEGRATIONTIME_50MS, TCS34725_GAIN_60X);
+
+static const uint8_t redMin = 95;
+static const uint8_t redMax = 126;
+static const uint8_t greenMin = 93;
+static const uint8_t greenMax = 143;
+static const uint8_t blueMin = 63;
+static const uint8_t blueMax = 120;
 
 // Ultrasonic
 
@@ -124,7 +133,7 @@ void loop()
 
 void autoZone()
 {
-    Color::COLOR color = calculateColor()
+    Color::COLOR color = calculateColor();
     
     switch (color)
     {
@@ -162,38 +171,69 @@ bool outOfZone(Color::COLOR colorZone, Color::COLOR newColor)
     return false;
 }
 
+Color::COLOR autoClasifyColorZone(Color::COLOR color)
+{
+    
+}
+
+void calibrateColor(float &red, float &green, float &blue)
+{
+    red = constrain(map(red, redMin, redMax, 0, 255), 0, 255);
+    green = constrain(map(green, greenMin, greenMax, 0, 255), 0, 255);
+    blue = constrain(map(blue, blueMin, blueMax, 0, 255), 0, 255);
+}
+
 void zoneA()
 {
     // Code for Zone A
     
-    // Este codigo usa el metodo de la mano izquierda para resolver el laberinto
     
-    const uint8_t distanceForNextSquare = 15;
-    
-    bool canGoLeft = leftUltrasonic.ping_cm() < distanceForNextSquare;
-    bool canGoFront = frontUltrasonic.ping_cm() < distanceForNextSquare;
-    bool canGoRight = rightUltrasonic.ping_cm() < distanceForNextSquare;
-    
-    if (canGoLeft)
+    for (;;)
     {
-        // Esta libre la zona izquierda, podemos seguir a la izquierda
-        turnLeft();
-    }
-    else if (canGoRight)
-    {
-        // Esta libre la zona derecha, podemos seguir a la derecha
-        turnRight();
-    }
-    else if (!canGoFront)
-    {
-        // No hay de otra, regresa de donde veniste
-        turnLeft();
-        turnLeft();
-    }
+        // Este codigo usa el metodo de la mano izquierda para resolver el laberinto
     
-    runHalfSquare();
-    
-    Color::COLOR color = calculateColor();
+        const uint8_t distanceForNextSquare = 15;
+        
+        bool canGoLeft = leftUltrasonic.ping_cm() < distanceForNextSquare;
+        bool canGoFront = frontUltrasonic.ping_cm() < distanceForNextSquare;
+        bool canGoRight = rightUltrasonic.ping_cm() < distanceForNextSquare;
+        
+        if (canGoLeft)
+        {
+            // Esta libre la zona izquierda, podemos seguir a la izquierda
+            turnLeft();
+        }
+        else if (canGoRight)
+        {
+            // Esta libre la zona derecha, podemos seguir a la derecha
+            turnRight();
+        }
+        else if (!canGoFront)
+        {
+            // No hay de otra, regresa de donde veniste
+            turnLeft();
+            turnLeft();
+        }
+        
+        runHalfSquare();
+        
+        Color::COLOR color = calculateColor();
+        
+        if (color == Color::COLOR_BLACK)
+        {
+            turnLeft();
+            turnLeft();
+        }
+        
+        runHalfSquare();
+        
+        if (outOfZone(Color::COLOR_YELLOW, color))
+        {
+            // Look at the front
+            turnLeft();
+            break;
+        }
+    }
     
 }
 
@@ -244,12 +284,12 @@ void runHalfSquare()
 {
     motorDriver.forward();
     
-    const uint16_t timeToWait = 100
+    const uint16_t timeToWait = 100;
     delay(timeToWait);
     
     motorDriver.stop();
     
-    const uint16_t estabilize = 10
+    const uint16_t estabilize = 10;
     delay(estabilize);
 }
 
@@ -259,11 +299,11 @@ void turnLeft()
     motorDriver.forwardB();
     
     const uint16_t timeToWait = 100;
-    delay(timeToWait)
+    delay(timeToWait);
     
     motorDriver.stop();
     
-    const uint16_t estabilize = 10
+    const uint16_t estabilize = 10;
     delay(estabilize);
 }
 
@@ -273,11 +313,11 @@ void turnRight()
     motorDriver.backwardB();
     
     const uint16_t timeToWait = 500;
-    delay(timeToWait)
+    delay(timeToWait);
     
     motorDriver.stop();
     
-    const uint16_t estabilize = 10
+    const uint16_t estabilize = 10;
     delay(estabilize);
 }
 
