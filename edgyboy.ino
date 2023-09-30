@@ -59,7 +59,7 @@ static const uint8_t rightUltrasonicPin = A2;
 
 static const uint8_t batteryPin = A3;
 
-// H-Bridge
+ = // H-Bridge
 
 L298NX2 motorDriver(enAPin, in1Pin, in2Pin, enBPin, in3Pin, in4Pin);
 
@@ -271,7 +271,6 @@ void zoneC()
         // {
         //     motorDriver.forward();
         // }
-        break;
     }
     
 }
