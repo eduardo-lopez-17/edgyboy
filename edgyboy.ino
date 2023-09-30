@@ -95,6 +95,17 @@ NewPing rightUltrasonic(rightUltrasonicPin, rightUltrasonicPin, MAX_LENGTH);
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
+static const uint8_t PROGMEM happyFace[] = {
+    0b00000000, 0b00000000,
+    0b00111100, 0b00111100,
+    0b00111100, 0b00111100,
+    0b00000000, 0b00000000,
+    0b11000000, 0b00000011,
+    0b00100000, 0b00000100,
+    0b00011000, 0b00011000,
+    0b00000111, 0b11100000,
+};
+
 /**
  * Todo list:
  * Add color sensor logic
@@ -107,8 +118,8 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 void setup()
 {
     // Servo
-    gripper.attach(gripperPin, minPulse, maxPulse);
-    gripper.write(servoOpenPosition);
+    // gripper.attach(gripperPin, minPulse, maxPulse);
+    // gripper.write(servoOpenPosition);
     
     // Color sensor
     rgbSensor.begin();
@@ -118,6 +129,10 @@ void setup()
     // OLED
     display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
     display.clearDisplay();
+    display.drawBitmap(0, 0, happyFace, 16, 8, 1);
+    display.display();
+    
+    delay(3000);
 }
 
 void loop()
@@ -127,12 +142,13 @@ void loop()
 
 void autoZone()
 {
+    /*
     Color::COLOR color = calculateColor();
     
     switch (color)
     {
         case Color::COLOR_YELLOW:
-            zoneA();
+            
             break;
         case Color::COLOR_CYAN:
             slope();
@@ -147,6 +163,8 @@ void autoZone()
             slope();
             break;
     }
+    */
+    zoneA();
 }
 
 bool outOfZone(Color::COLOR colorZone, Color::COLOR newColor)
@@ -188,23 +206,27 @@ void zoneA()
     
         const uint8_t distanceForNextSquare = 15;
         
-        bool canGoLeft = leftUltrasonic.ping_cm() > distanceForNextSquare;
-        bool canGoFront = frontUltrasonic.ping_cm() > distanceForNextSquare;
-        bool canGoRight = rightUltrasonic.ping_cm() > distanceForNextSquare;
+        bool canGoLeft = leftUltrasonic.ping_cm() >= distanceForNextSquare;
+        bool canGoFront = frontUltrasonic.ping_cm() >= distanceForNextSquare;
+        bool canGoRight = rightUltrasonic.ping_cm() >= distanceForNextSquare;
         
         if (canGoLeft)
         {
             // Esta libre la zona izquierda, podemos seguir a la izquierda
+            turnLeft();
             turnLeft();
         }
         else if (canGoRight)
         {
             // Esta libre la zona derecha, podemos seguir a la derecha
             turnRight();
+            turnRight();
         }
         else if (!canGoFront)
         {
             // No hay de otra, regresa de donde veniste
+            turnLeft();
+            turnLeft();
             turnLeft();
             turnLeft();
         }
@@ -250,6 +272,8 @@ void zoneA()
         {
             turnLeft();
             turnLeft();
+            turnLeft();
+            turnLeft();
         }
         
         runHalfSquare();
@@ -257,6 +281,7 @@ void zoneA()
         if (outOfZone(Color::COLOR_YELLOW, color))
         {
             // Look at the front
+            turnLeft();
             turnLeft();
             break;
         }
@@ -313,12 +338,12 @@ void runHalfSquare()
 {
     motorDriver.forward();
     
-    const uint16_t timeToWait = 100;
+    const uint16_t timeToWait = 550;
     delay(timeToWait);
     
     motorDriver.stop();
     
-    const uint16_t estabilize = 10;
+    const uint16_t estabilize = 500;
     delay(estabilize);
 }
 
@@ -327,12 +352,12 @@ void turnLeft()
     motorDriver.backwardA();
     motorDriver.forwardB();
     
-    const uint16_t timeToWait = 100;
+    const uint16_t timeToWait = 550;
     delay(timeToWait);
     
     motorDriver.stop();
     
-    const uint16_t estabilize = 10;
+    const uint16_t estabilize = 500;
     delay(estabilize);
 }
 
@@ -341,12 +366,12 @@ void turnRight()
     motorDriver.forwardA();
     motorDriver.backwardB();
     
-    const uint16_t timeToWait = 500;
+    const uint16_t timeToWait = 550;
     delay(timeToWait);
     
     motorDriver.stop();
     
-    const uint16_t estabilize = 10;
+    const uint16_t estabilize = 500;
     delay(estabilize);
 }
 
